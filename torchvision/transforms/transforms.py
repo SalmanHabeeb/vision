@@ -139,7 +139,7 @@ class ToTensor:
 
 
 class PILToTensor:
-    """Convert a ``PIL Image`` to a tensor of the same type. This transform does not support torchscript.
+    """Convert a ``PIL Image`` to a tensor of the same type. If a ``torch.Tensor`` is passed instead, this function returns it without modification. This transform does not support torchscript.
 
     Converts a PIL Image (H x W x C) to a Tensor of shape (C x H x W).
     """
@@ -159,7 +159,12 @@ class PILToTensor:
         Returns:
             Tensor: Converted image.
         """
-        return F.pil_to_tensor(pic)
+
+        if isinstance(pic, Tensor):
+            pass
+        else:
+            return F.pil_to_tensor(pic)
+        
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}()"
