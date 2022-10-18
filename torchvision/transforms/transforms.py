@@ -161,7 +161,7 @@ class PILToTensor:
         """
 
         if isinstance(pic, Tensor):
-            pass
+            return pic
         else:
             return F.pil_to_tensor(pic)
         
